@@ -22,7 +22,7 @@ public class HomeWork1 {
         System.setProperty("webdriver.chrome.driver", "C:\\ChromeDriver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://BlazeDemo.com");
-        WebElement findFlightsBtn = driver.findElement(By.xpath("//input[@value='Find Flights']"));
+        WebElement findFlightsBtn = driver.findElement(By.cssSelector(".btn.btn-primary"));
         findFlightsBtn.click();
         WebDriverWait wait = new WebDriverWait(driver, 5);
         // waiting for page load table
