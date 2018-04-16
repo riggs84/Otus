@@ -10,10 +10,7 @@ import org.testng.annotations.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-import java.util.TimeZone;
+import java.util.*;
 
 public class HomeWork2 extends BaseTest {
 
@@ -150,6 +147,7 @@ public class HomeWork2 extends BaseTest {
                 .getText().replace("x", "").trim();
         String expirationDate = driver.findElement(By.xpath("//td[contains(text(), 'Expiration')]/following-sibling::td"))
                 .getText().trim();
+        Date dateCurrent = new Date();
         String date = driver.findElement(By.xpath("//td[contains(text(), 'Date')]/following-sibling::td"))
                 .getText().trim();
 
@@ -166,19 +164,12 @@ public class HomeWork2 extends BaseTest {
         Assert.assertEquals(expirationDate, (month + " /" + year), "Error: Expiration date is not equal");
 
         // Check date
-        /* String datePattern = "EEE, d MMM YYYY HH:mm Z";
+        String datePattern = "EEE, dd MMM YYYY HH:mm:ss Z";
         TimeZone tz = TimeZone.getTimeZone("UTC");
         TimeZone.setDefault(tz);
         SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-        String datePage;
-        String currentDate;
-        Date dataFromPage  = null;
-        try {
-            dataFromPage = dateFormatter.parse(date);
-        } catch (ParseException e) {
-            throw new Error("Error on parsing");
-        }
-        datePage = dateFormatter.format(dataFromPage);
-        currentDate = dateFormatter.format(new Date()); */
+        String currentDate = dateFormatter.format(dateCurrent);
+
+        Assert.assertEquals(date, currentDate, "Error: dates are not the same");
     }
 }
