@@ -7,16 +7,21 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.TimeZone;
 
 public class HomeWork2 extends BaseTest {
 
     @Test
-    public void test1(){
+    public void test1() {
         // finding elements on home page
-        Select chooseDepartureCitySelect = new Select( driver.findElement(By.xpath("//select[@name='fromPort']")) );
-        Select chooseDestinationCitySelect = new Select( driver.findElement(By.xpath("//select[@name='toPort']")) );
+        Select chooseDepartureCitySelect = new Select(driver.findElement(By.xpath("//select[@name='fromPort']")));
+        Select chooseDestinationCitySelect = new Select(driver.findElement(By.xpath("//select[@name='toPort']")));
         WebElement findFlightsBtn = driver.findElement(By.xpath("//input[@type='submit']"));
 
         // getting all options from departure selection
@@ -82,7 +87,7 @@ public class HomeWork2 extends BaseTest {
         float pricePurch = Float.parseFloat(pricePurchase);
         String feesAndTaxes = driver.findElement(By.xpath("//p[contains(text(), 'Arbitrary Fees and Taxes:')]")).getText();
         feesAndTaxes = feesAndTaxes.substring(feesAndTaxes.indexOf(":") + 1).trim();
-        float feesAndTax  = Float.parseFloat(feesAndTaxes);
+        float feesAndTax = Float.parseFloat(feesAndTaxes);
         float totalCost = Float.parseFloat(driver.findElement(By.xpath("//em")).getText().trim());
 
 
@@ -101,7 +106,7 @@ public class HomeWork2 extends BaseTest {
         String state = faker.address().state();
         String zipCode = faker.address().zipCode();
         String creditCard = faker.business().creditCardNumber();
-        String month = String.valueOf(faker.number().numberBetween(1,12));
+        String month = String.valueOf(faker.number().numberBetween(1, 12));
         String year = String.valueOf(faker.number().numberBetween(1970, 2070));
 
         //Filling form
@@ -156,15 +161,24 @@ public class HomeWork2 extends BaseTest {
         Assert.assertEquals(amount, "USD", "Error: Amount is not USD");
         // Check last 4 digits of credit card
         Assert.assertEquals(cardNumber, creditCard.substring(creditCard.length() - 4),
-                "Error: last 4 digits of credit card is not equal" );
+                "Error: last 4 digits of credit card is not equal");
         // Check expiration
         Assert.assertEquals(expirationDate, (month + " /" + year), "Error: Expiration date is not equal");
 
-
-
-
-
-
-
+        // Check date
+        /* String datePattern = "EEE, d MMM YYYY HH:mm Z";
+        TimeZone tz = TimeZone.getTimeZone("UTC");
+        TimeZone.setDefault(tz);
+        SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+        String datePage;
+        String currentDate;
+        Date dataFromPage  = null;
+        try {
+            dataFromPage = dateFormatter.parse(date);
+        } catch (ParseException e) {
+            throw new Error("Error on parsing");
+        }
+        datePage = dateFormatter.format(dataFromPage);
+        currentDate = dateFormatter.format(new Date()); */
     }
 }
