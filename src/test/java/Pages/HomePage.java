@@ -22,9 +22,6 @@ public class HomePage {
     @FindBy(css = "input[type=submit]")
     WebElement findFlightBtn;
 
-    Select chooseDepartureCitySelect;
-    Select chooseDestinationCitySelect;
-
     public HomePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
