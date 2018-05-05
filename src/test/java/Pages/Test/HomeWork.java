@@ -18,7 +18,7 @@ public class HomeWork extends BaseTest{
     protected String reservePageURL = "http://blazedemo.com/reserve.php";
     protected String purchasePageURL = "http://blazedemo.com/purchase.php";
     protected String confirmationPageURL = "http://blazedemo.com/confirmation.php";
-    
+
     @Test
     public void homeWork3test(){
         HomePage homePage = new HomePage(driver);
