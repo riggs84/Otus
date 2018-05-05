@@ -45,7 +45,7 @@ public class PurchasePage {
     }
 
     public String getAirline(){
-        String airline = driver.findElement(By.xpath("//p[contains(text(), 'AirLine')]")).getText();
+        String airline = driver.findElement(By.xpath("//p[contains(text(), 'Airline')]")).getText();
         return airline.substring(airline.indexOf(":") + 1).trim();
     }
 
@@ -68,5 +68,55 @@ public class PurchasePage {
 
     public float getTotalCost(){
         return Float.parseFloat(driver.findElement(By.xpath("//em")).getText().trim());
+    }
+
+    public void inputName(String str){
+        nameInputField.clear();
+        nameInputField.sendKeys(str);
+    }
+
+    public void inputAddress(String str){
+        addressInputField.clear();
+        addressInputField.sendKeys(str);
+    }
+
+    public void inputCity(String str){
+        cityInputField.clear();
+        cityInputField.sendKeys(str);
+    }
+
+    public void inputState(String str){
+        stateInputField.clear();
+        stateInputField.sendKeys(str);
+    }
+
+    public void inputZipCode(String str){
+        zipCodeInputField.clear();
+        zipCodeInputField.sendKeys(str);
+    }
+
+    public void inputCreditCard(String str){
+        creditCardInputField.clear();
+        creditCardInputField.sendKeys(str);
+    }
+
+    public void inputCreditCardMonth(String str){
+        creditCardMonthInputField.clear();
+        creditCardMonthInputField.sendKeys(str);
+    }
+
+    public void inputCreditCardYear(String str){
+        creditCardYearInputField.clear();
+        creditCardYearInputField.sendKeys(str);
+    }
+
+    public void inputCardHolderName(String str){
+        cardHolderNameInputFiled.clear();
+        cardHolderNameInputFiled.sendKeys(str);
+    }
+
+    public ConfirmationPage clickPurchaseFlightBtn(){
+        purchaseFlightBtn.click();
+        return new ConfirmationPage(driver);
     }
 }

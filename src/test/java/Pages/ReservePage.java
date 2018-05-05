@@ -41,4 +41,8 @@ public class ReservePage{
     public void selectRandomRowInFlightsTable(){
         table.selectRandomTableRow();
     }
+
+    public ReservePageTable getTable(){
+        return table;
+    }
 }
