@@ -1,5 +1,6 @@
 package BaseTest;
 
+import DriverManager.DriverManagerHandler;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -14,6 +15,7 @@ public class BaseTest {
 
     @BeforeClass
     public void beforeClass(){
+        DriverManagerHandler.getInstance();
         driver.manage().timeouts().implicitlyWait(timeOut, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, timeOut);
     }
