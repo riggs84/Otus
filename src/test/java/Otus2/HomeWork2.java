@@ -12,10 +12,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static DriverManager.DriverManagerHandler.driver;
+
 public class HomeWork2 extends BaseTest {
 
     @Test
-    public void test1() {
+    public void test1() throws ParseException {
         // finding elements on home page
         Select chooseDepartureCitySelect = new Select(driver.findElement(By.xpath("//select[@name='fromPort']")));
         Select chooseDestinationCitySelect = new Select(driver.findElement(By.xpath("//select[@name='toPort']")));
@@ -53,7 +55,7 @@ public class HomeWork2 extends BaseTest {
         Assert.assertEquals(driver.findElement(By.xpath("//input[@name='toPort']")).getAttribute("value"),
                 destination);
 
-        // Getting all row from result table
+        // Getting all rows from result table
         List<WebElement> tableRows = driver.findElements(By.xpath("//table/tbody"));
 
         // Select random row
@@ -164,12 +166,17 @@ public class HomeWork2 extends BaseTest {
         Assert.assertEquals(expirationDate, (month + " /" + year), "Error: Expiration date is not equal");
 
         // Check date
-        String datePattern = "EEE, dd MMM YYYY HH:mm:ss Z";
+        /* String datePattern = "EEE, dd MMM YYYY HH:mm:ss Z";
         TimeZone tz = TimeZone.getTimeZone("UTC");
         TimeZone.setDefault(tz);
         SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
-        String currentDate = dateFormatter.format(dateCurrent);
-
-        Assert.assertEquals(date, currentDate, "Error: dates are not the same");
+        Date pageDate = dateFormatter.parse(date);
+        Assert.assertEquals(pageDate.getDay(), dateCurrent.getDay(), "Error: Day is not equal");
+        Assert.assertEquals(pageDate.getHours(), dateCurrent.getHours(), "Error: Hour is not equal");
+        Assert.assertEquals(pageDate.getMinutes(), dateCurrent.getMinutes(), "Error: Minutes are not equal");
+        Assert.assertEquals(pageDate.getTimezoneOffset(), dateCurrent.getTimezoneOffset(), "Error: TimZone is not equal");
+        Assert.assertEquals(pageDate.getMonth(), dateCurrent.getMonth(), "Error: Month is not equal");
+        Assert.assertEquals(pageDate.getYear(), dateCurrent.getYear(), "Error: Year is not equal");
+        Assert.assertEquals(pageDate.getDate(), dateCurrent.getDate(), "Error: Date is not equal"); */
     }
 }
