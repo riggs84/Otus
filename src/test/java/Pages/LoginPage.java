@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -24,5 +25,14 @@ public class LoginPage {
     public void moveMouseToLoginBtn(){
         Actions builder = new Actions(driver);
         builder.moveToElement(loginBtn);
+        builder.build().perform();
+    }
+
+    public Dimension getLoginBtnDimensions(){
+        return loginBtn.getSize();
+    }
+
+    public String getLoginBtnColor(){
+        return loginBtn.getCssValue("background-color");
     }
 }

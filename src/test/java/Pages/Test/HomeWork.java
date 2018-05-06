@@ -1,11 +1,9 @@
 package Pages.Test;
 
 import BaseTest.BaseTest;
-import Pages.ConfirmationPage;
-import Pages.HomePage;
-import Pages.PurchasePage;
-import Pages.ReservePage;
+import Pages.*;
 import Pages.Utils.DataGenerator;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -18,6 +16,7 @@ public class HomeWork extends BaseTest{
     protected String reservePageURL = "http://blazedemo.com/reserve.php";
     protected String purchasePageURL = "http://blazedemo.com/purchase.php";
     protected String confirmationPageURL = "http://blazedemo.com/confirmation.php";
+    protected String loginPageURL ="http://blazedemo.com/login";
 
     @Test
     public void homeWork3test(){
@@ -83,5 +82,18 @@ public class HomeWork extends BaseTest{
         Assert.assertEquals(confirmPage.getExpirationDate(), month + " /" + year,
                 "Error: expiration date doesn't match");
 
+    }
+
+    @Test
+    public void checkLoginBtnDimensionAndColorTest(){
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.openPage();
+        Assert.assertEquals(driver.getCurrentUrl(), loginPageURL);
+        Dimension loginBtnWithoutFocus = loginPage.getLoginBtnDimensions();
+        loginPage.moveMouseToLoginBtn();
+        String loginBtnColor = loginPage.getLoginBtnColor();
+        Dimension loginBtnWithFocusOn = loginPage.getLoginBtnDimensions();
+        Assert.assertTrue(loginBtnWithFocusOn.equals(loginBtnWithoutFocus));
+        Assert.assertEquals(loginBtnColor, "rgba(37, 121, 169, 1)");
     }
 }
